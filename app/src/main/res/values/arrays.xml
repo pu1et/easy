@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_dot_active">
+        <item>"#000000"</item>
+    </string-array>
+    <string-array name="array_dot_inactive">
+        <item>"#ffffff"</item>
+        <item>"#ffffff</item>
+    </string-array>
+</resources>
