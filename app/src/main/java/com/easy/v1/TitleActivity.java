@@ -15,7 +15,7 @@ public class TitleActivity extends Activity {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        startActivity(new Intent(this, TutorialActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

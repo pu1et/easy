@@ -2,9 +2,7 @@ package com.easy.v1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,27 +29,15 @@ public class MainActivity extends AppCompatActivity {
         btn_toreg.setOnClickListener(onClickListener);
         btn_atod.setOnClickListener(onClickListener);
         // 최초 실행 여부를 판단
-        SharedPreferences sf = getSharedPreferences("checkFirst", Activity.MODE_PRIVATE);
-        boolean checkFirst = sf.getBoolean("checkFirst",false);
-        if(!checkFirst){
-            SharedPreferences.Editor editor = sf.edit();
-            editor.putBoolean("checkFirst",true);
-            editor.apply();
 
-            Intent intent = new Intent(MainActivity.this, TutorialActivity.class);
-            startActivity(intent);
-            finish();
-        }else{
-            // 최초 실행이 아닐 때 진행할 작업
-
-        }
     }
     Button.OnClickListener onClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
+            Intent intent;
             switch (view.getId()){
                 case R.id.btn_atod:
-                    Intent intent = new Intent(MainActivity.this, PopupActivity.class);
+                    intent = new Intent(MainActivity.this, PopupActivity.class);
                     intent.putExtra("type", PopupType.NORMAL);
                     intent.putExtra("gravity", PopupGravity.CENTER);
                     intent.putExtra("title","회사소개");
@@ -60,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(intent, 1);
                     break;
                 case R.id.btn_toreg:
-                    startActivity(new Intent(MainActivity.this, REGStep1.class));
+                    startActivity(new Intent(MainActivity.this, REGSurvey.class));
                     break;
             }
         }

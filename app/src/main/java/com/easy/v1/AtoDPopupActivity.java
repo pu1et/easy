@@ -1,6 +1,7 @@
 package com.easy.v1;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.lakue.lakuepopupactivity.PopupActivity;
@@ -11,11 +12,12 @@ public class AtoDPopupActivity extends PopupActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
+        Log.v("message",data+","+resultCode);
         if(resultCode == RESULT_OK){
             if(requestCode == 1){
                 PopupResult result = (PopupResult)data.getSerializableExtra("result");
                 if(result == PopupResult.CENTER){
-                    Toast.makeText(this, "CENTER", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "CENTER", Toast.LENGTH_LONG).show();
                 }
             }
             if(requestCode == 2){

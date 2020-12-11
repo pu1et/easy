@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context=".REGStep1">
+    tools:context=".REGSurvey">
 
     <androidx.appcompat.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
@@ -89,21 +89,29 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
-                                android:text="보험사"
+                                android:text="* 보험사"
                                 android:textColor="#000"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
-                            <Spinner
-                                android:id="@+id/spin_InsComp"
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="1dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form" />
+                                android:layout_marginLeft="1dp"
+                                android:background="@drawable/regstep_form"
+                                android:padding="1dp"
+                                >
+                            <Spinner
+                                style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                                android:id="@+id/spin_InsComp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                              />
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -119,16 +127,16 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
-                                android:text="이메일"
+                                android:text="* 이메일"
                                 android:textColor="#000"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/insCompEmail"
+                            <EditText
+                                android:id="@+id/userEmail"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="1dp"
@@ -189,7 +197,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="증권번호"
@@ -223,7 +231,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="사업자번호"
@@ -257,7 +265,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="* 보험계약자"
@@ -291,7 +299,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="피보험자"
@@ -325,7 +333,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="* 관리담당자"
@@ -359,7 +367,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="* 담당자 연락처"
@@ -393,7 +401,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="* 피해자"
@@ -427,7 +435,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="* 피해자 연락처"
@@ -461,7 +469,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
+                                android:background="@drawable/regstep_form_title"
                                 android:gravity="center|left"
                                 android:paddingLeft="15dp"
                                 android:text="사고 목적물 소재지"
@@ -532,7 +540,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/regstep_form"
+                    android:background="@drawable/regstep_form_title"
                     android:gravity="center|left"
                     android:paddingLeft="15dp"
                     android:text="사고일시"
@@ -580,7 +588,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:background="@drawable/regstep_form"
+                    android:background="@drawable/regstep_form_title"
                     android:gravity="center|left"
                     android:paddingLeft="15dp"
                     android:text="사고장소"
@@ -618,7 +626,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="2"
                     android:layout_marginBottom="3dp"
-                    android:background="@drawable/regstep_form"
+                    android:background="@drawable/regstep_form_title"
                     android:gravity="center"
                     android:text="사고유형"
                     android:textColor="#000"
@@ -717,7 +725,7 @@
                         android:text="전기 누전" />
 
                     <CheckBox
-                        android:id="@+id/check2_11"
+                        android:id="@+id/check2_9"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
@@ -733,7 +741,7 @@
                     android:weightSum="2">
 
                     <CheckBox
-                        android:id="@+id/check2_9"
+                        android:id="@+id/check2_10"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -742,7 +750,7 @@
                         android:text="대물(제3자)배상" />
 
                     <CheckBox
-                        android:id="@+id/check2_10"
+                        android:id="@+id/check2_11"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -763,7 +771,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="2"
                     android:layout_marginBottom="3dp"
-                    android:background="@drawable/regstep_form"
+                    android:background="@drawable/regstep_form_title"
                     android:gravity="center"
                     android:text="피해현황"
                     android:textColor="#000"
@@ -924,7 +932,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginBottom="3dp"
-                    android:background="@drawable/regstep_form"
+                    android:background="@drawable/regstep_form_title"
                     android:gravity="center"
                     android:text="예상 손해액"
                     android:textColor="#000"
@@ -994,7 +1002,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
-                    android:background="@drawable/regstep_form"
+                    android:background="@drawable/regstep_form_title"
                     android:gravity="center|left"
                     android:paddingLeft="15dp"
                     android:text="사고자(배상주체)"
@@ -1033,7 +1041,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="2"
                     android:layout_marginBottom="3dp"
-                    android:background="@drawable/regstep_form"
+                    android:background="@drawable/regstep_form_title"
                     android:gravity="center"
                     android:text="영업담당자(GA)"
                     android:textColor="#000"
@@ -1160,7 +1168,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/btn_tostep2"
+                android:id="@+id/btn_tosuc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
