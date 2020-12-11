@@ -189,20 +189,19 @@ public class REGSurvey extends AppCompatActivity {
                         message += "사고 목적물 소재지 : " + accidLoc.getText().toString() + "\n";
                         message += "사고일시 : " + accidDate.getText().toString()+" "+accidTime.getText().toString() + "\n";
                         message += "사고장소 : " + Arrays.toString(check1.toArray(new String[check1.size()])) + "\n";
-                        message += "사고유형 : " + Arrays.toString(check2.toArray(new String[check1.size()])) + "\n";
-                        message += "피해현황 : " + Arrays.toString(check3.toArray(new String[check1.size()])) + "\n";
-                        message += "예상손해액 : " + Arrays.toString(check4.toArray(new String[check1.size()])) + "\n";
-                        message += "사고자(배상주체) : " + Arrays.toString(check5.toArray(new String[check1.size()])) + "\n";
-                        message += "영업담당자(GA) : " + Arrays.toString(check6.toArray(new String[check1.size()])) + "\n";
+                        message += "사고유형 : " + Arrays.toString(check2.toArray(new String[check2.size()])) + "\n";
+                        message += "피해현황 : " + Arrays.toString(check3.toArray(new String[check3.size()])) + "\n";
+                        message += "예상손해액 : " + Arrays.toString(check4.toArray(new String[check4.size()])) + "\n";
+                        message += "사고자(배상주체) : " + Arrays.toString(check5.toArray(new String[check5.size()])) + "\n";
+                        message += "영업담당자(GA) : " + Arrays.toString(check6.toArray(new String[check6.size()])) + "\n";
                         Log.v("toInsCompManager",message);
                         try {
                             Intent email = new Intent(Intent.ACTION_SEND);
-                            email.setType("plain/Text");
-                            email.putExtra(Intent.EXTRA_EMAIL, "hoho1911@naver.com");
+                            email.setType("text/plain");
+                            email.putExtra(Intent.EXTRA_EMAIL, new String[]{insCompManager});
                             email.putExtra(Intent.EXTRA_SUBJECT, "[보험 접수] 데이터");
                             email.putExtra(Intent.EXTRA_TEXT, message);
-                            email.setType("message/rfc822");
-                            startActivityForResult(email,800);
+                            startActivity(email);
 
                         }catch (Exception e){
                             e.printStackTrace();
