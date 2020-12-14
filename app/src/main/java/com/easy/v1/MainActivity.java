@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lakue.lakuepopupactivity.PopupActivity;
@@ -14,7 +15,7 @@ import com.lakue.lakuepopupactivity.PopupGravity;
 import com.lakue.lakuepopupactivity.PopupType;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton btn_toreg;
+    ImageView btn_toreg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
