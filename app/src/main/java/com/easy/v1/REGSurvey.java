@@ -31,8 +31,8 @@ public class REGSurvey extends AppCompatActivity {
     private Toolbar toolbar;
     private Spinner spin_InsComp;
     private TextView accidDate, accidTime;
-    // 사용자이메일, 증권번호, 사업자번호, 보험계약자, 피보험자, 관리담당자, 담당자 연락처, 피해자, 피해자 연락처, 사고 목적물 소재지
-    private EditText userEmail, policyNo, bizNum, insurant, insured, manager, manager_phone, victim, victim_phone, accidLoc;
+    // 증권번호, 사업자번호, 보험계약자, 피보험자, 관리담당자, 담당자 연락처, 피해자, 피해자 연락처, 사고 목적물 소재지
+    private EditText policyNo, bizNum, insurant, insured, manager, manager_phone, victim, victim_phone, accidLoc;
     private DatePickerDialog.OnDateSetListener callbackMethod_date;
     private TimePickerDialog.OnTimeSetListener callbackMethod_time;
     Button btn_tosuc;
@@ -101,7 +101,6 @@ public class REGSurvey extends AppCompatActivity {
     }
 
     public void editTextInit(){
-        userEmail = findViewById(R.id.userEmail);
         policyNo = findViewById(R.id.policyNo);
         bizNum = findViewById(R.id.bizNum);
         insurant = findViewById(R.id.insurant);
@@ -177,8 +176,7 @@ public class REGSurvey extends AppCompatActivity {
                         } else {
                             insCompManager = "sfsonsa@samsungfiresvc.com";
                         }
-                        String message = "사용자 이메일 : " + userEmail.getText().toString() + "\n";
-                        message += "증권번호 : " + policyNo.getText().toString() + "\n";
+                        String message = "증권번호 : " + policyNo.getText().toString() + "\n";
                         message += "사업자번호 : " + bizNum.getText().toString() + "\n";
                         message += "보험계약자 : " + insurant.getText().toString() + "\n";
                         message += "피보험자 : " + insured.getText().toString() + "\n";
@@ -199,7 +197,7 @@ public class REGSurvey extends AppCompatActivity {
                             Intent email = new Intent(Intent.ACTION_SEND);
                             email.setType("text/plain");
                             email.putExtra(Intent.EXTRA_EMAIL, new String[]{insCompManager});
-                            email.putExtra(Intent.EXTRA_SUBJECT, "[보험 접수] 데이터");
+                            email.putExtra(Intent.EXTRA_SUBJECT, "사고 접수 by 이사접app");
                             email.putExtra(Intent.EXTRA_TEXT, message);
                             startActivity(email);
 
@@ -243,8 +241,6 @@ public class REGSurvey extends AppCompatActivity {
         insCompStr = spin_InsComp.getSelectedItem().toString();
         if(insCompStr.equals("선택")){
             return "보험사를 선택해주세요.";
-        }else if(userEmail.getText().toString().equals("")){
-            return "접수자의 이메일을 입력해주세요.";
         }else if(insurant.getText().toString().equals("")){
             return "보험계약자를 입력해주세요.";
         }else if(manager.getText().toString().equals("")){

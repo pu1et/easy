@@ -115,41 +115,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:layout_marginBottom="3dp"
-                            android:background="#ffffff"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/regstep_form_title"
-                                android:gravity="center|left"
-                                android:paddingLeft="15dp"
-                                android:text="* 이메일"
-                                android:textColor="#000"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:id="@+id/userEmail"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="1dp"
-                                android:layout_weight="1"
-                                android:background="@drawable/regstep_form"
-                                android:gravity="center|left"
-                                android:paddingLeft="15dp"
-                                android:textColor="#000"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
@@ -1173,9 +1138,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:background="@drawable/regstep_form"
+                android:background="@drawable/btn_form"
                 android:text="접수하기"
                 android:textColor="#000"
+                style="?android:attr/borderlessButtonStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
