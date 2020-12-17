@@ -170,6 +170,7 @@ public class REGSurvey extends AppCompatActivity {
                 case R.id.btn_tosuc:
                     String tmp = checkValue();
                     if(tmp == null) {
+
                         if (insCompStr.equals("현대해상")) {
                             insCompManager = "claim1@hi.co.kr";
 
@@ -197,6 +198,7 @@ public class REGSurvey extends AppCompatActivity {
                             Intent email = new Intent(Intent.ACTION_SEND);
                             email.setType("text/plain");
                             email.putExtra(Intent.EXTRA_EMAIL, new String[]{insCompManager});
+                            email.putExtra(Intent.EXTRA_CC, new String[]{"cs.iatod.inc@gmail.com"});
                             email.putExtra(Intent.EXTRA_SUBJECT, "사고 접수 by 이사접app");
                             email.putExtra(Intent.EXTRA_TEXT, message);
                             startActivity(email);
