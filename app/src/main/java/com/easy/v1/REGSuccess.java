@@ -34,6 +34,10 @@ public class REGSuccess extends AppCompatActivity {
                     Intent intent = new Intent(REGSuccess.this, MainActivity.class);
                     startActivity(intent);
                     break;
+                    case R.id.btn_tomain:
+                    Intent intent = new Intent(REGSuccess.this, MainActivity.class);
+                    startActivity(intent);
+                    break;
                     */
             }
         }
