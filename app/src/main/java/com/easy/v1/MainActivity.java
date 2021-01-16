@@ -17,6 +17,8 @@ import com.lakue.lakuepopupactivity.PopupType;
 public class MainActivity extends AppCompatActivity {
     ImageView btn_toreg;
 
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
