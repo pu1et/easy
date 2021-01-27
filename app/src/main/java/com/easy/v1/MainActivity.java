@@ -16,6 +16,7 @@ import com.lakue.lakuepopupactivity.PopupType;
 
 public class MainActivity extends AppCompatActivity {
     ImageView btn_toreg;
+    ImageButton btn_toDevInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
 
         btn_toreg = findViewById(R.id.btn_toreg);
+        btn_toDevInfo = findViewById(R.id.btn_toDevInfo);
 
         btn_toreg.setOnClickListener(onClickListener);
+        btn_toDevInfo.setOnClickListener(onClickListener);
         // 최초 실행 여부를 판단
 
     }
@@ -37,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
             switch (view.getId()){
                 case R.id.btn_toreg:
                     startActivity(new Intent(MainActivity.this, REGSurvey.class));
+                    break;
+                case R.id.btn_toDevInfo:
+                    startActivity(new Intent(MainActivity.this, DevInfo.class));
                     break;
             }
         }

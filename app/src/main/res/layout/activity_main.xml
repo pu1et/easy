@@ -8,6 +8,17 @@
     android:orientation="vertical"
     android:background="@drawable/mainimage_utd"
     >
+    <ImageButton
+        android:id="@+id/btn_toDevInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icon"
+        android:scaleType="fitXY"
+        android:background="@null"
+        >
+    </ImageButton>
 
 
 <androidx.cardview.widget.CardView

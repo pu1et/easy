@@ -29,7 +29,8 @@ import java.util.Arrays;
 
 public class REGSurvey extends AppCompatActivity {
     private Toolbar toolbar;
-    private Spinner spin_InsComp;
+    // 보험사, 사고장소, 사고유형, 예상손해액, 사고자, 영업담당자
+    private Spinner spin_InsComp, spin_accPlace, spin_accType, spin_expLoss, spin_accSuspect, spin_PICOfSales;
     private TextView accidDate, accidTime;
     // 증권번호, 사업자번호, 보험계약자, 피보험자, 관리담당자, 담당자 연락처, 피해자, 피해자 연락처, 사고 목적물 소재지
     private EditText policyNo, bizNum, insurant, insured, manager, manager_phone, victim, victim_phone, accidLoc;
@@ -37,18 +38,17 @@ public class REGSurvey extends AppCompatActivity {
     private TimePickerDialog.OnTimeSetListener callbackMethod_time;
     Button btn_tosuc;
     String[] insCompList = {"선택","현대해상","삼성화재"};
+    String[] accPlaceList = {"선택","건물 내", "건물 외"};
+    String[] accTypeList = {"선택","화재","풍수해","파손","폭발/파열","지진","급배수 누수/방수","스프링쿨러 누수","전기 누전","대물(제3자)배상","대인(제3자)배상","기타"};
+    String[] expLossList = {"선택","300만원 미만","300만원 이상 ~ 1천만원 미만","1천만원 이상 ~ 3천만원 미만","3천만원 이상 ~ 5천만원 미만","5천만원 이상 ~ 1억원 미만","1억원 이상"};
+    String[] accSuspectList = {"선택","피보험자","기타"};
+    String[] PICOfSalesList = {"선택","밸류어블인","밸류테크","넥솔","에드","사랑모아","영진에드","가이드","피플라이프"};
+
     String insCompStr, insCompManager;
-    // 1: 사고장소, 2: 사고유형, 3: 피해현황, 4: 예상손해액, 5: 사고자(배상주체). 6: 영업담당자(GA)
-    CheckBox check1_1,check1_2, check2_1, check2_2, check2_3, check2_4, check2_5, check2_6, check2_7, check2_8, check2_9, check2_10, check2_11,
-            check3_1, check3_2, check3_3, check3_4, check3_5, check3_6, check3_7, check3_8, check3_9, check3_10, check3_11,
-            check4_1, check4_2, check4_3, check4_4, check4_5, check4_6, check5_1, check5_2,
-            check6_1, check6_2, check6_3, check6_4, check6_5, check6_6, check6_7, check6_8, check6_9;
+    // 1: 피해현황
+    CheckBox check1_1, check1_2, check1_3, check1_4, check1_5, check1_6, check1_7, check1_8, check1_9, check1_10, check1_11;
     ArrayList<String> check1 = new ArrayList<String>();
-    ArrayList<String> check2 = new ArrayList<String>();
-    ArrayList<String> check3 = new ArrayList<String>();
-    ArrayList<String> check4 = new ArrayList<String>();
-    ArrayList<String> check5 = new ArrayList<String>();
-    ArrayList<String> check6 = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,8 @@ public class REGSurvey extends AppCompatActivity {
         intent.putExtra("buttonCenter","확인");
         startActivityForResult(intent, 1);
 
-        spin_InsComp = findViewById(R.id.spin_InsComp);
+
+        spinInit();
         editTextInit();
         checkboxInit();
         accidDate = findViewById(R.id.accidDate);
@@ -100,6 +101,37 @@ public class REGSurvey extends AppCompatActivity {
 
     }
 
+    public void spinInit(){
+        ArrayAdapter<String> adapter1, adapter2, adapter3, adapter4, adapter5, adapter6;
+        spin_InsComp = findViewById(R.id.spin_InsComp);
+        spin_accPlace = findViewById(R.id.spin_accPlace);
+        spin_accType = findViewById(R.id.spin_accType);
+        spin_expLoss = findViewById(R.id.spin_expLoss);
+        spin_accSuspect = findViewById(R.id.spin_accSuspect);
+        spin_PICOfSales= findViewById(R.id.spin_PICOfSales);
+
+        adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, insCompList);
+        adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accPlaceList);
+        adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accTypeList);
+        adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, expLossList);
+        adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accSuspectList);
+        adapter6 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, PICOfSalesList);
+
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spin_InsComp.setAdapter(adapter1);
+        spin_accPlace.setAdapter(adapter2);
+        spin_accType.setAdapter(adapter3);
+        spin_expLoss.setAdapter(adapter4);
+        spin_accSuspect.setAdapter(adapter5);
+        spin_PICOfSales.setAdapter(adapter6);
+
+    }
     public void editTextInit(){
         policyNo = findViewById(R.id.policyNo);
         bizNum = findViewById(R.id.bizNum);
@@ -115,46 +147,17 @@ public class REGSurvey extends AppCompatActivity {
     public void checkboxInit(){
         check1_1 = findViewById(R.id.check1_1);
         check1_2 = findViewById(R.id.check1_2);
-        check2_1 = findViewById(R.id.check2_1);
-        check2_2 = findViewById(R.id.check2_2);
-        check2_3 = findViewById(R.id.check2_3);
-        check2_4 = findViewById(R.id.check2_4);
-        check2_5 = findViewById(R.id.check2_5);
-        check2_6 = findViewById(R.id.check2_6);
-        check2_7 = findViewById(R.id.check2_7);
-        check2_8 = findViewById(R.id.check2_8);
-        check2_9 = findViewById(R.id.check2_9);
-        check2_10 = findViewById(R.id.check2_10);
-        check2_11 = findViewById(R.id.check2_11);
-        check3_1 = findViewById(R.id.check3_1);
-        check3_2 = findViewById(R.id.check3_2);
-        check3_3 = findViewById(R.id.check3_3);
-        check3_4 = findViewById(R.id.check3_4);
-        check3_5 = findViewById(R.id.check3_5);
-        check3_6 = findViewById(R.id.check3_6);
-        check3_7 = findViewById(R.id.check3_7);
-        check3_8 = findViewById(R.id.check3_8);
-        check3_9 = findViewById(R.id.check3_9);
-        check3_10 = findViewById(R.id.check3_10);
-        check3_11 = findViewById(R.id.check3_11);
-        check4_1 = findViewById(R.id.check4_1);
-        check4_2 = findViewById(R.id.check4_2);
-        check4_3 = findViewById(R.id.check4_3);
-        check4_4 = findViewById(R.id.check4_4);
-        check4_5 = findViewById(R.id.check4_5);
-        check4_6 = findViewById(R.id.check4_6);
-        check5_1 = findViewById(R.id.check5_1);
-        check5_2 = findViewById(R.id.check5_2);
-        check6_1 = findViewById(R.id.check6_1);
-        check6_2 = findViewById(R.id.check6_2);
-        check6_3 = findViewById(R.id.check6_3);
-        check6_4 = findViewById(R.id.check6_4);
-        check6_5 = findViewById(R.id.check6_5);
-        check6_6 = findViewById(R.id.check6_6);
-        check6_7 = findViewById(R.id.check6_7);
-        check6_8 = findViewById(R.id.check6_8);
-        check6_9 = findViewById(R.id.check6_9);
+        check1_3 = findViewById(R.id.check1_3);
+        check1_4 = findViewById(R.id.check1_4);
+        check1_5 = findViewById(R.id.check1_5);
+        check1_6 = findViewById(R.id.check1_6);
+        check1_7 = findViewById(R.id.check1_7);
+        check1_8 = findViewById(R.id.check1_8);
+        check1_9 = findViewById(R.id.check1_9);
+        check1_10 = findViewById(R.id.check1_10);
+        check1_11 = findViewById(R.id.check1_11);
     }
+
     Button.OnClickListener onClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
@@ -187,12 +190,12 @@ public class REGSurvey extends AppCompatActivity {
                         message += "피해자 연락처 : " + victim_phone.getText().toString() + "\n";
                         message += "사고 목적물 소재지 : " + accidLoc.getText().toString() + "\n";
                         message += "사고일시 : " + accidDate.getText().toString()+" "+accidTime.getText().toString() + "\n";
-                        message += "사고장소 : " + Arrays.toString(check1.toArray(new String[check1.size()])) + "\n";
-                        message += "사고유형 : " + Arrays.toString(check2.toArray(new String[check2.size()])) + "\n";
-                        message += "피해현황 : " + Arrays.toString(check3.toArray(new String[check3.size()])) + "\n";
-                        message += "예상손해액 : " + Arrays.toString(check4.toArray(new String[check4.size()])) + "\n";
-                        message += "사고자(배상주체) : " + Arrays.toString(check5.toArray(new String[check5.size()])) + "\n";
-                        message += "영업담당자(GA) : " + Arrays.toString(check6.toArray(new String[check6.size()])) + "\n";
+                        message += "사고장소 : " + spin_accPlace.getSelectedItem().toString() + "\n";
+                        message += "사고유형 : " + spin_accType.getSelectedItem().toString() + "\n";
+                        message += "피해현황 : " + Arrays.toString(check1.toArray(new String[check1.size()])) + "\n";
+                        message += "예상손해액 : " + spin_expLoss.getSelectedItem().toString() + "\n";
+                        message += "사고자(배상주체) : " + spin_accSuspect.getSelectedItem().toString() + "\n";
+                        message += "영업담당자(GA) : " + spin_PICOfSales.getSelectedItem().toString() + "\n";
                         Log.v("toInsCompManager",message);
                         try {
                             Intent email = new Intent(Intent.ACTION_SEND);
@@ -257,45 +260,15 @@ public class REGSurvey extends AppCompatActivity {
 
             if(check1_1.isChecked()) check1.add(check1_1.getText().toString());
             if(check1_2.isChecked()) check1.add(check1_2.getText().toString());
-            if(check2_1.isChecked()) check2.add(check2_1.getText().toString());
-            if(check2_2.isChecked()) check2.add(check2_2.getText().toString());
-            if(check2_3.isChecked()) check2.add(check2_3.getText().toString());
-            if(check2_4.isChecked()) check2.add(check2_4.getText().toString());
-            if(check2_5.isChecked()) check2.add(check2_5.getText().toString());
-            if(check2_6.isChecked()) check2.add(check2_6.getText().toString());
-            if(check2_7.isChecked()) check2.add(check2_7.getText().toString());
-            if(check2_8.isChecked()) check2.add(check2_8.getText().toString());
-            if(check2_9.isChecked()) check2.add(check2_9.getText().toString());
-            if(check2_10.isChecked()) check2.add(check2_10.getText().toString());
-            if(check2_11.isChecked()) check2.add(check2_11.getText().toString());
-            if(check3_1.isChecked()) check3.add(check3_1.getText().toString());
-            if(check3_2.isChecked()) check3.add(check3_2.getText().toString());
-            if(check3_3.isChecked()) check3.add(check3_3.getText().toString());
-            if(check3_4.isChecked()) check3.add(check3_4.getText().toString());
-            if(check3_5.isChecked()) check3.add(check3_5.getText().toString());
-            if(check3_6.isChecked()) check3.add(check3_6.getText().toString());
-            if(check3_7.isChecked()) check3.add(check3_7.getText().toString());
-            if(check3_8.isChecked()) check3.add(check3_8.getText().toString());
-            if(check3_9.isChecked()) check3.add(check3_9.getText().toString());
-            if(check3_10.isChecked()) check3.add(check3_10.getText().toString());
-            if(check3_11.isChecked()) check3.add(check3_11.getText().toString());
-            if(check4_1.isChecked()) check4.add(check4_1.getText().toString());
-            if(check4_2.isChecked()) check4.add(check4_2.getText().toString());
-            if(check4_3.isChecked()) check4.add(check4_3.getText().toString());
-            if(check4_4.isChecked()) check4.add(check4_4.getText().toString());
-            if(check4_5.isChecked()) check4.add(check4_5.getText().toString());
-            if(check4_6.isChecked()) check4.add(check4_6.getText().toString());
-            if(check5_1.isChecked()) check5.add(check5_1.getText().toString());
-            if(check5_2.isChecked()) check5.add(check5_2.getText().toString());
-            if(check6_1.isChecked()) check6.add(check6_1.getText().toString());
-            if(check6_2.isChecked()) check6.add(check6_2.getText().toString());
-            if(check6_3.isChecked()) check6.add(check6_3.getText().toString());
-            if(check6_4.isChecked()) check6.add(check6_4.getText().toString());
-            if(check6_5.isChecked()) check6.add(check6_5.getText().toString());
-            if(check6_6.isChecked()) check6.add(check6_6.getText().toString());
-            if(check6_7.isChecked()) check6.add(check6_7.getText().toString());
-            if(check6_8.isChecked()) check6.add(check6_8.getText().toString());
-            if(check6_9.isChecked()) check6.add(check6_9.getText().toString());
+            if(check1_3.isChecked()) check1.add(check1_3.getText().toString());
+            if(check1_4.isChecked()) check1.add(check1_4.getText().toString());
+            if(check1_5.isChecked()) check1.add(check1_5.getText().toString());
+            if(check1_6.isChecked()) check1.add(check1_6.getText().toString());
+            if(check1_7.isChecked()) check1.add(check1_7.getText().toString());
+            if(check1_8.isChecked()) check1.add(check1_8.getText().toString());
+            if(check1_9.isChecked()) check1.add(check1_9.getText().toString());
+            if(check1_10.isChecked()) check1.add(check1_10.getText().toString());
+            if(check1_11.isChecked()) check1.add(check1_11.getText().toString());
 
     }
         return null;

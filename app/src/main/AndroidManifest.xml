@@ -27,6 +27,7 @@
             android:label="" android:screenOrientation="portrait"/>
         <activity android:name=".REGSuccess" android:screenOrientation="portrait"/>
         <activity android:name=".AtoDPopupActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".DevInfo"/>
     </application>
 
 </manifest>
