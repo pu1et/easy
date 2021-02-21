@@ -95,7 +95,7 @@ public class REGSurvey extends AppCompatActivity {
             }
         };
 
-   
+ 
     }
 
     public void spinInit(){
