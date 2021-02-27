@@ -95,7 +95,10 @@ public class REGSurvey extends AppCompatActivity {
             }
         };
 
- 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, insCompList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin_InsComp.setAdapter(adapter);
+
     }
 
     public void spinInit(){
