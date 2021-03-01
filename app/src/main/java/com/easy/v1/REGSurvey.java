@@ -88,14 +88,12 @@ public class REGSurvey extends AppCompatActivity {
             }
         };
 
-        callbackMethod_time = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                accidTime.setText(hourOfDay+":"+minute);
-            }
-        };
+     
 
- 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, insCompList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin_InsComp.setAdapter(adapter);
+
     }
 
     public void spinInit(){
