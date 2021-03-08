@@ -41,6 +41,11 @@ public class TutorialActivity extends AppCompatActivity {
         btn_skip = findViewById(R.id.btn_skip);
         btn_next = findViewById(R.id.btn_next);
 
+        layouts = new int[]{
+                R.layout.tutorial1,
+                R.layout.tutorial2,
+                R.layout.tutorial3
+        };
 
         addBottomDots(0);
 
