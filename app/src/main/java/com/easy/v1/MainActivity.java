@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent;
             switch (view.getId()){
+                case R.id.btn_toreg:
+                    startActivity(new Intent(MainActivity.this, REGSurvey.class));
+                    break;
+                case R.id.btn_toDevInfo:
+                    startActivity(new Intent(MainActivity.this, DevInfo.class));
+                    break;
             }
         }
     };
