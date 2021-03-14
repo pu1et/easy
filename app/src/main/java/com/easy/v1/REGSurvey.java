@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -118,7 +119,17 @@ public class REGSurvey extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) { }
         });
 
+        // AdMob 하단 고정 & ScrollView 크기 조정
+        mAdView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        mAdView.loadAd(adRequest);
+        ScrollView scrollView = findViewById(R.id.scrollView);
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)scrollView.getLayoutParams();
+        lp.bottomMargin = getAdSize().getHeightInPixels(getApplicationContext());
+        scrollView.setLayoutParams(lp);
+
         // AdMob 하단 고정
+        /*
         RelativeLayout.LayoutParams lay = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         lay.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mLayout = findViewById(R.id.regstep1_layout);
@@ -135,8 +146,9 @@ public class REGSurvey extends AppCompatActivity {
         lay.addRule(RelativeLayout.ABOVE, mAdView.getId());
         scrollView.setLayoutParams(lay);
 
+         */
     }
-
+/*
     private void loadBanner(){
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
         AdSize adSize = getAdSize();
@@ -156,6 +168,8 @@ public class REGSurvey extends AppCompatActivity {
         });
     }
 
+ */
+
     private AdSize getAdSize(){
         Display display = getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -165,7 +179,7 @@ public class REGSurvey extends AppCompatActivity {
         float density = outMetrics.density;
 
         int adWidth = (int) (widthPixels/density);
-Log.d("size", widthPixels+", "+density+", "+adWidth+", "+AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth));
+        Log.d("size", widthPixels+", "+density+", "+adWidth+", "+AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth));
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
     }
     public void spinInit(){

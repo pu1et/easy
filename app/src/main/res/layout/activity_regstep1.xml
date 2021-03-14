@@ -35,8 +35,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
+        android:paddingTop="5dp"
         android:background="#3C6F8FA5"
         android:layout_marginTop="?attr/actionBarSize">
 
@@ -921,4 +920,15 @@
         </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:visibility="visible"
+        />
 </RelativeLayout>
