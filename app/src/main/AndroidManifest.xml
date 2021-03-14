@@ -13,6 +13,11 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id"
+            ></meta-data>
         <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +29,9 @@
             android:theme="@style/SplashTitleTheme"/>
         <activity android:name=".TutorialActivity" android:screenOrientation="portrait"/>
         <activity android:name=".REGSurvey"
-            android:label="" android:screenOrientation="portrait"/>
-        <activity android:name=".REGSuccess" android:screenOrientation="portrait"/>
+            android:label="" android:windowSoftInputMode="adjustPan" android:screenOrientation="portrait"/>
+        <activity android:name=".REGSuccess"
+            android:windowSoftInputMode="adjustPan" android:screenOrientation="portrait"/>
         <activity android:name=".AtoDPopupActivity" android:screenOrientation="portrait"/>
         <activity android:name=".DevInfo"/>
     </application>

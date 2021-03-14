@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -20,6 +24,13 @@ import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.lakue.lakuepopupactivity.PopupActivity;
 import com.lakue.lakuepopupactivity.PopupGravity;
 import com.lakue.lakuepopupactivity.PopupType;
@@ -48,6 +59,9 @@ public class REGSurvey extends AppCompatActivity {
     // 1: 피해현황
     CheckBox check1_1, check1_2, check1_3, check1_4, check1_5, check1_6, check1_7, check1_8, check1_9, check1_10, check1_11;
     ArrayList<String> check1 = new ArrayList<String>();
+
+    private AdView mAdView;
+    private RelativeLayout mLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +113,61 @@ public class REGSurvey extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_InsComp.setAdapter(adapter);
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) { }
+        });
+
+        // AdMob 하단 고정
+        RelativeLayout.LayoutParams lay = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lay.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        mLayout = findViewById(R.id.regstep1_layout);
+
+        mAdView = new AdView(this);
+        mAdView.setId(R.id.ad_view);
+        mAdView.setAdUnitId(getString(R.string.banner_ad_unit_id));
+        mLayout.addView(mAdView, lay);
+        loadBanner();
+
+        // AdMob 위 ScrollView 고정
+        ScrollView scrollView = findViewById(R.id.scrollView);
+        lay = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        lay.addRule(RelativeLayout.ABOVE, mAdView.getId());
+        scrollView.setLayoutParams(lay);
+
     }
 
+    private void loadBanner(){
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        AdSize adSize = getAdSize();
+        mAdView.setAdSize(adSize);
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                Log.d("adMob","adMob onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Log.d("adMob","adMob onAdFailedToLoad : "+errorCode);
+            }
+        });
+    }
+
+    private AdSize getAdSize(){
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float widthPixels = outMetrics.widthPixels;
+        float density = outMetrics.density;
+
+        int adWidth = (int) (widthPixels/density);
+Log.d("size", widthPixels+", "+density+", "+adWidth+", "+AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth));
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
+    }
     public void spinInit(){
         ArrayAdapter<String> adapter1, adapter2, adapter3, adapter4, adapter5, adapter6;
         spin_InsComp = findViewById(R.id.spin_InsComp);

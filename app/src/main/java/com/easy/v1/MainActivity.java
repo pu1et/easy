@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
         btn_toreg.setOnClickListener(onClickListener);
         btn_toDevInfo.setOnClickListener(onClickListener);
-        // 최초 실행 여부를 판단
-
     }
     Button.OnClickListener onClickListener = new View.OnClickListener(){
         @Override
