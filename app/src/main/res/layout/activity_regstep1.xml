@@ -35,6 +35,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
+        android:background="#3C6F8FA5"
         android:layout_marginTop="?attr/actionBarSize">
 
         <!--전체 리니어-->
